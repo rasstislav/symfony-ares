@@ -9,6 +9,11 @@ framework:
     #esi: true
     #fragments: true
 
+    http_client:
+        scoped_clients:
+            ares_economic_entities.client:
+                base_uri: 'https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/'
+
 when@test:
     framework:
         test: true
