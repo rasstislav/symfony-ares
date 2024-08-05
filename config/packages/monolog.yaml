@@ -22,6 +22,14 @@ when@dev:
                 type: console
                 process_psr_3_messages: false
                 channels: ["!event", "!doctrine", "!console"]
+            symfony_mailer:
+                type: symfony_mailer
+                from_email: '%env(MONOLOG_MAILER_FROM_EMAIL)%'
+                to_email: '%env(MONOLOG_MAILER_TO_EMAIL)%'
+                subject: 'An Error Occurred! %%message%%'
+                level: error
+                formatter: monolog.formatter.html
+                content_type: text/html
 
 when@test:
     monolog:
@@ -60,3 +68,11 @@ when@prod:
                 channels: [deprecation]
                 path: php://stderr
                 formatter: monolog.formatter.json
+            symfony_mailer:
+                type: symfony_mailer
+                from_email: '%env(MONOLOG_MAILER_FROM_EMAIL)%'
+                to_email: '%env(MONOLOG_MAILER_TO_EMAIL)%'
+                subject: 'An Error Occurred! %%message%%'
+                level: error
+                formatter: monolog.formatter.html
+                content_type: text/html
